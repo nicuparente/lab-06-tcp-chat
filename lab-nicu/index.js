@@ -51,6 +51,11 @@ app.init = () => {
         }
         return;
       }
+      else if(data[0] === '/quit'){
+        console.log(`disconnecting`, client.socket.nickName);
+        client.socket.end();
+        handleDisconnect();
+      }
       else {
         let message = data.toString();
         clientPool.map((client) => client.write(`${client.nickName} : ${message} \n`));
